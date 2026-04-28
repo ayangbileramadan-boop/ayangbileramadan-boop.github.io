@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume — MAKAVELI</title>
+  <meta name="description" content="Full Stack Developer Resume — Python, Django, Bootstrap, JavaScript" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cabinet+Grotesk:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root {
+      --bg: #04060d; --bg2: #080c18; --card: #0c1222; --border: rgba(255,255,255,0.06);
+      --accent: #00ffcc; --accent2: #ff3366; --text: #eef0f6; --muted: #5a6480;
+      --font-disp: 'Bebas Neue', sans-serif; --font-body: 'Cabinet Grotesk', sans-serif; --font-mono: 'JetBrains Mono', monospace; --r: 14px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; padding: 2rem 0; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+    /* Header */
+    .res-header { display: grid; grid-template-columns: 100px 1fr; gap: 2rem; align-items: center; margin-bottom: 2.5rem; }
+    .res-photo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); }
+    .res-name { font-family: var(--font-disp); font-size: 3.5rem; letter-spacing: 0.06em; line-height: 1; margin-bottom: 0.5rem; }
+    .res-title { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
+    .res-contact { display: flex; flex-wrap: wrap; gap: 1rem; font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+    .res-contact a { color: var(--muted); text-decoration: none; transition: color .25s; }
+    .res-contact a:hover { color: var(--accent); }
+    .res-contact i { color: var(--accent); margin-right: 0.3rem; }
+
+    /* Sections */
+    .res-sec { margin-bottom: 2.5rem; }
+    .res-sec-title { font-family: var(--font-disp); font-size: 1.6rem; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+    .res-sec-title::before { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .res-sec-title::after { content: ''; width: 30px; height: 1px; background: var(--accent); }
+
+    /* Summary */
+    .res-summary { color: var(--muted); font-size: 1rem; line-height: 1.8; }
+
+    /* Experience & Education */
+    .res-item { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .res-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .res-item-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem; }
+    .res-item-role { font-family: var(--font-disp); font-size: 1.4rem; letter-spacing: 0.04em; }
+    .res-item-date { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
+    .res-item-company { font-size: 0.9rem; color: var(--accent); font-weight: 700; margin-bottom: 0.5rem; }
+    .res-item-desc { color: var(--muted); font-size: 0.92rem; line-height: 1.7; }
+    .res-item-desc ul { margin-left: 1.2rem; margin-top: 0.4rem; }
+    .res-item-desc li { margin-bottom: 0.25rem; }
+
+    /* Skills */
+    .skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+    .skill-cat { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; }
+    .skill-cat-title { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .skill-tag { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text); background: rgba(0,255,204,0.08); border: 1px solid rgba(0,255,204,0.15); padding: 0.25rem 0.6rem; border-radius: 100px; }
+
+    /* Projects */
+    .res-proj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+    .res-proj { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; transition: all .3s; }
+    .res-proj:hover { border-color: rgba(0,255,204,0.2); transform: translateY(-3px); }
+    .res-proj-name { font-family: var(--font-disp); font-size: 1.2rem; letter-spacing: 0.04em; margin-bottom: 0.4rem; }
+    .res-proj-desc { color: var(--muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 0.75rem; }
+    .res-proj-links { display: flex; gap: 0.5rem; }
+    .res-proj-links a { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); text-decoration: none; background: rgba(0,255,204,0.08); border: 1px solid rgba(0,255,204,0.15); padding: 0.2rem 0.6rem; border-radius: 4px; transition: all .25s; }
+    .res-proj-links a:hover { background: var(--accent); color: #000; }
+
+    /* Footer */
+    .res-footer { text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
+    .res-footer a { color: var(--accent); text-decoration: none; }
+
+    /* Print */
+    @media print {
+      body { background: #fff; color: #000; }
+      .res-sec-title { color: #000; }
+      .res-sec-title::after { background: #000; }
+      .res-contact a { color: #333; }
+      .res-item-desc, .res-proj-desc { color: #444; }
+      .skill-cat, .res-proj { border-color: #ddd; }
+    }
+
+    @media (max-width: 600px) {
+      .res-header { grid-template-columns: 1fr; text-align: center; }
+      .res-photo { margin: 0 auto; }
+      .res-contact { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="res-header">
+      <img src="images/profile.jpg" alt="MAKAVELI" class="res-photo" />
+      <div>
+        <div class="res-name">MAKAVELI</div>
+        <div class="res-title">Full Stack Developer</div>
+        <div class="res-contact">
+          <a href="mailto:ayangbileramadan@gmail.com"><i class="fa-solid fa-envelope"></i> ayangbileramadan@gmail.com</a>
+          <a href="https://github.com/ayangbileramadan-boop" target="_blank"><i class="fa-brands fa-github"></i> github.com/ayangbileramadan-boop</a>
+          <a href="https://x.com/santos_4458" target="_blank"><i class="fa-brands fa-x-twitter"></i> @santos_4458</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="res-sec">
+      <div class="res-sec-title">Summary</div>
+      <p class="res-summary">Full Stack Developer with expertise in building end-to-end web applications. Proficient in Python/Django backends paired with responsive Bootstrap frontends. Passionate about clean code, performance optimization, and shipping production-ready products. Open to remote and on-site opportunities.</p>
+    </div>
+
+    <!-- Skills -->
+    <div class="res-sec">
+      <div class="res-sec-title">Technical Skills</div>
+      <div class="skill-grid">
+        <div class="skill-cat">
+          <div class="skill-cat-title">Frontend</div>
+          <div class="skill-list">
+            <span class="skill-tag">HTML5</span><span class="skill-tag">CSS3</span><span class="skill-tag">Bootstrap 5</span><span class="skill-tag">JavaScript</span><span class="skill-tag">Sass/SCSS</span><span class="skill-tag">Responsive Design</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <div class="skill-cat-title">Backend</div>
+          <div class="skill-list">
+            <span class="skill-tag">Python 3</span><span class="skill-tag">Django</span><span class="skill-tag">Django REST</span><span class="skill-tag">JWT Auth</span><span class="skill-tag">ORM</span><span class="skill-tag">URL Routing</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <div class="skill-cat-title">Database</div>
+          <div class="skill-list">
+            <span class="skill-tag">PostgreSQL</span><span class="skill-tag">SQLite</span><span class="skill-tag">Redis</span><span class="skill-tag">Migrations</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <div class="skill-cat-title">DevOps & Tools</div>
+          <div class="skill-list">
+            <span class="skill-tag">Git</span><span class="skill-tag">GitHub</span><span class="skill-tag">Linux</span><span class="skill-tag">Docker</span><span class="skill-tag">Nginx</span><span class="skill-tag">VPS / Heroku</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <div class="res-sec">
+      <div class="res-sec-title">Experience</div>
+      <div class="res-item">
+        <div class="res-item-head">
+          <div class="res-item-role">Full Stack Developer</div>
+          <div class="res-item-date">2023 — Present</div>
+        </div>
+        <div class="res-item-company">Freelance / Personal Projects</div>
+        <div class="res-item-desc">
+          Building and deploying full-stack web applications end-to-end. Managing everything from database design to frontend implementation.
+          <ul>
+            <li>Developed multiple Django applications with Bootstrap 5 frontends</li>
+            <li>Implemented REST APIs using Django REST Framework</li>
+            <li>Managed PostgreSQL databases and Redis caching layers</li>
+            <li>Deployed applications to VPS and Heroku</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="res-sec">
+      <div class="res-sec-title">Education</div>
+      <div class="res-item">
+        <div class="res-item-head">
+          <div class="res-item-role">Self-Taught Developer</div>
+          <div class="res-item-date">Ongoing</div>
+        </div>
+        <div class="res-item-company">Online Courses & Documentation</div>
+        <div class="res-item-desc">Continuously learning through building real-world projects, official documentation, and open-source contributions. Focused on Python, Django, and modern web development practices.</div>
+      </div>
+    </div>
+
+    <!-- Projects -->
+    <div class="res-sec">
+      <div class="res-sec-title">Featured Projects</div>
+      <div class="res-proj-grid">
+        <div class="res-proj">
+          <div class="res-proj-name">Django Blog CMS</div>
+          <div class="res-proj-desc">Full-featured CMS with multi-user roles, rich text editing, tagging, and SEO-optimised URLs.</div>
+          <div class="res-proj-links">
+            <a href="https://github.com/ayangbileramadan-boop/django-blog-cms" target="_blank">GitHub</a>
+          </div>
+        </div>
+        <div class="res-proj">
+          <div class="res-proj-name">REST API Store</div>
+          <div class="res-proj-desc">E-commerce REST API with Django REST Framework, Stripe payments, and Bootstrap storefront.</div>
+          <div class="res-proj-links">
+            <a href="https://github.com/ayangbileramadan-boop/rest-api-store" target="_blank">GitHub</a>
+          </div>
+        </div>
+        <div class="res-proj">
+          <div class="res-proj-name">Task Manager App</div>
+          <div class="res-proj-desc">Collaborative tool with Django Channels WebSocket, drag-and-drop board, and real-time updates.</div>
+          <div class="res-proj-links">
+            <a href="https://github.com/ayangbileramadan-boop/task-manager-app" target="_blank">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="res-footer">
+      <p>View this portfolio online at <a href="https://github.com/ayangbileramadan-boop" target="_blank">github.com/ayangbileramadan-boop</a></p>
+      <p style="margin-top:0.5rem;">&copy; 2025 MAKAVELI — Full Stack Developer</p>
+    </div>
+  </div>
+</body>
+</html>
