@@ -631,7 +631,7 @@
           </a>
         </div>
         <div class="contact-form-box rv d2">
-          <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <form id="contactForm" action="https://formspree.io/f/mpqeaega" method="POST">
             <div class="form-row"><label>Your Name</label><input type="text" name="name" id="cname" placeholder="Jane Smith" required /></div>
             <div class="form-row"><label>Email</label><input type="email" name="email" id="cemail" placeholder="jane@company.com" required /></div>
             <div class="form-row"><label>Message</label><textarea name="message" id="cmsg" placeholder="Tell me about your project..." required></textarea></div>
@@ -860,8 +860,7 @@
     const formErr = document.getElementById('formErr');
     const formId = contactForm.action.split('/f/')[1];
 
-    // Check if Formspree is set up
-    if (formId === 'YOUR_FORM_ID') {
+    if (!formId || formId.includes('YOUR_FORM_ID')) {
       alert('Formspree not configured yet. Please email me directly at ayangbileramadan@gmail.com');
       return;
     }
