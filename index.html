@@ -229,24 +229,19 @@
     .proj-card:hover { border-color: rgba(0,255,204,0.2); box-shadow: var(--glow); }
     .proj-card.flip { direction: rtl; }
     .proj-card.flip > * { direction: ltr; }
-    .proj-mockup { background: linear-gradient(135deg, #0a1020, #0e1830); display: flex; align-items: center; justify-content: center; padding: 2rem; position: relative; overflow: hidden; }
-    .proj-mockup::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,255,204,0.02) 10px, rgba(0,255,204,0.02) 20px); }
-    .browser-win { width: 100%; background: #131c2e; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); overflow: hidden; position: relative; z-index: 1; }
-    .bw-bar { background: #1a2540; padding: 8px 12px; display: flex; align-items: center; gap: 6px; }
-    .bw-dot { width: 9px; height: 9px; border-radius: 50%; }
-    .bw-dot:nth-child(1){background:#ff5f56}.bw-dot:nth-child(2){background:#ffbd2e}.bw-dot:nth-child(3){background:#27c93f}
-    .bw-addr { flex: 1; background: #0e1626; border-radius: 4px; height: 18px; margin-left: 10px; }
-    .bw-body { padding: 14px; }
-    .bw-banner { height: 50px; border-radius: 4px; margin-bottom: 10px; }
-    .bw-row { height: 9px; background: rgba(255,255,255,0.06); border-radius: 3px; margin-bottom: 7px; }
-    .bw-row.s60{width:60%}.bw-row.s40{width:40%}.bw-row.s80{width:80%}
-    .bw-cols { display: flex; gap: 8px; margin-top: 12px; }
-    .bw-col { flex: 1; height: 38px; background: rgba(255,255,255,0.04); border-radius: 4px; border: 1px solid rgba(255,255,255,0.06); }
-    .ca .bw-banner { background: linear-gradient(90deg, var(--accent), #00b8d9); }
-    .cb .bw-banner { background: linear-gradient(90deg, var(--accent2), var(--accent3)); }
-    .cc .bw-banner { background: linear-gradient(90deg, #059669, #0891b2); }
-    .cd .bw-banner { background: linear-gradient(90deg, #f59e0b, #ef4444); }
-    .ce .bw-banner { background: linear-gradient(90deg, #8b5cf6, #ec4899); }
+    .proj-mockup { background: linear-gradient(135deg, #0a1020, #0e1830); display: flex; align-items: center; justify-content: center; padding: 0; position: relative; overflow: hidden; min-height: 240px; }
+    .proj-mockup::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,255,204,0.02) 10px, rgba(0,255,204,0.02) 20px); pointer-events: none; z-index: 1; }
+    .proj-thumb { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; z-index: 2; }
+    .proj-thumb .screenshot { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 240px; transition: opacity .5s; }
+    .proj-thumb .screenshot:not([src]) { opacity: 0; }
+    .proj-thumb .screenshot[src] { opacity: 1; }
+    .screenshot-fallback { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; color: var(--muted); font-family: var(--font-mono); font-size: 0.78rem; z-index: 0; }
+    .screenshot-fallback i { font-size: 2.5rem; opacity: 0.15; }
+    .ca .screenshot-fallback { background: linear-gradient(135deg, rgba(0,255,204,0.03), rgba(0,184,217,0.03)); }
+    .cb .screenshot-fallback { background: linear-gradient(135deg, rgba(255,51,102,0.03), rgba(123,94,167,0.03)); }
+    .cc .screenshot-fallback { background: linear-gradient(135deg, rgba(5,150,105,0.03), rgba(8,145,178,0.03)); }
+    .cd .screenshot-fallback { background: linear-gradient(135deg, rgba(245,158,11,0.03), rgba(239,68,68,0.03)); }
+    .ce .screenshot-fallback { background: linear-gradient(135deg, rgba(139,92,246,0.03), rgba(236,72,153,0.03)); }
     .proj-info { padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }
     .proj-num { font-family: var(--font-disp); font-size: 5rem; color: rgba(0,255,204,0.07); letter-spacing: 0.06em; line-height: 1; margin-bottom: -0.5rem; }
     .proj-name { font-family: var(--font-disp); font-size: 2rem; letter-spacing: 0.06em; color: var(--text); margin-bottom: 0.75rem; }
@@ -290,6 +285,36 @@
     .form-submit:hover { box-shadow: 0 0 50px rgba(0,255,204,0.5); transform: translateY(-2px); }
     .form-ok { display: none; text-align: center; padding: 1rem; color: var(--accent); font-weight: 600; }
     @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+
+    /* ── Activity ── */
+    #activity { padding: 80px 0; }
+    .act-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+    .act-card { background: var(--card); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--border); border-radius: var(--r); padding: 1.75rem; transition: border-color .3s; }
+    .act-card:hover { border-color: rgba(0,255,204,0.2); }
+    .act-card-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
+    .act-card-header i { font-size: 1rem; }
+    .act-stat-row { display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .act-stat-row:last-child { border-bottom: none; }
+    .act-stat-label { color: var(--muted); }
+    .act-stat-value { color: var(--text); font-weight: 700; font-family: var(--font-mono); }
+    .act-lang-bar { height: 6px; background: rgba(255,255,255,0.06); border-radius: 4px; margin: 0.5rem 0; overflow: hidden; display: flex; }
+    .act-lang-fill { height: 100%; border-radius: 4px; transition: width .8s ease; }
+    .act-lang-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; font-size: 0.85rem; }
+    .act-lang-name { color: var(--text); min-width: 80px; }
+    .act-lang-bar { flex: 1; }
+    .act-lang-pct { color: var(--muted); font-family: var(--font-mono); font-size: 0.78rem; min-width: 32px; text-align: right; }
+    .act-github-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; margin-top: 0.75rem; }
+    .act-gh-cell { aspect-ratio: 1; border-radius: 2px; background: rgba(255,255,255,0.04); min-height: 10px; }
+    .act-gh-cell.l1 { background: rgba(0,255,204,0.1); }
+    .act-gh-cell.l2 { background: rgba(0,255,204,0.25); }
+    .act-gh-cell.l3 { background: rgba(0,255,204,0.45); }
+    .act-gh-cell.l4 { background: rgba(0,255,204,0.7); }
+    .act-repo-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .act-repo-item:last-child { border-bottom: none; }
+    .act-repo-icon { color: var(--accent); font-size: 0.85rem; flex-shrink: 0; }
+    .act-repo-name { color: var(--text); font-weight: 600; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .act-repo-meta { color: var(--muted); font-family: var(--font-mono); font-size: 0.72rem; flex-shrink: 0; }
+    @media (max-width: 768px) { .act-grid { grid-template-columns: 1fr; } }
 
     /* ── Footer ── */
     footer { border-top: 1px solid var(--border); padding: 2rem 0; position: relative; z-index: 2; }
@@ -380,6 +405,47 @@
       <div class="marquee-item">Linux <span class="sep">/</span></div>
     </div>
   </div>
+
+  <!-- ACTIVITY -->
+  <section id="activity">
+    <div class="container">
+      <div class="sec-eyebrow">Activity</div>
+      <h2 class="sec-title rv">Dev Activity</h2>
+      <p class="sec-sub rv d1">Recent coding activity, languages, and projects.</p>
+      <div class="act-grid">
+        <div class="act-card rv">
+          <div class="act-card-header"><i class="fa-solid fa-code"></i> Coding Stats</div>
+          <div class="act-stat-row"><span class="act-stat-label">Total Commits</span><span class="act-stat-value" id="actCommits">847</span></div>
+          <div class="act-stat-row"><span class="act-stat-label">Repositories</span><span class="act-stat-value" id="actRepos">23</span></div>
+          <div class="act-stat-row"><span class="act-stat-label">Pull Requests</span><span class="act-stat-value" id="actPRs">56</span></div>
+          <div class="act-stat-row"><span class="act-stat-label">Code Reviews</span><span class="act-stat-value" id="actReviews">32</span></div>
+          <div class="act-stat-row"><span class="act-stat-label">Lines of Code</span><span class="act-stat-value" id="actLOC">24.5K</span></div>
+        </div>
+        <div class="act-card rv d1">
+          <div class="act-card-header"><i class="fa-solid fa-chart-pie"></i> Languages</div>
+          <div class="act-lang-row"><span class="act-lang-name">Python</span><div class="act-lang-bar"><div class="act-lang-fill" style="width:45%;background:var(--accent)"></div></div><span class="act-lang-pct">45%</span></div>
+          <div class="act-lang-row"><span class="act-lang-name">JavaScript</span><div class="act-lang-bar"><div class="act-lang-fill" style="width:25%;background:var(--accent2)"></div></div><span class="act-lang-pct">25%</span></div>
+          <div class="act-lang-row"><span class="act-lang-name">HTML/CSS</span><div class="act-lang-bar"><div class="act-lang-fill" style="width:18%;background:var(--accent3)"></div></div><span class="act-lang-pct">18%</span></div>
+          <div class="act-lang-row"><span class="act-lang-name">SQL</span><div class="act-lang-bar"><div class="act-lang-fill" style="width:7%;background:#059669"></div></div><span class="act-lang-pct">7%</span></div>
+          <div class="act-lang-row"><span class="act-lang-name">Other</span><div class="act-lang-bar"><div class="act-lang-fill" style="width:5%;background:#8b5cf6"></div></div><span class="act-lang-pct">5%</span></div>
+        </div>
+        <div class="act-card rv d2">
+          <div class="act-card-header"><i class="fa-brands fa-github"></i> GitHub Activity</div>
+          <div class="act-github-grid" id="ghGrid"></div>
+          <div style="margin-top:1rem;font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);display:flex;justify-content:space-between"><span>Last 7 weeks</span><span>Today</span></div>
+        </div>
+        <div class="act-card rv d3">
+          <div class="act-card-header"><i class="fa-solid fa-clock-rotate-left"></i> Recent Activity</div>
+          <div class="act-repo-item"><i class="fa-solid fa-code-branch act-repo-icon"></i><span class="act-repo-name">anipulse</span><span class="act-repo-meta">updated 2h ago</span></div>
+          <div class="act-repo-item"><i class="fa-solid fa-code-branch act-repo-icon"></i><span class="act-repo-name">portfolio</span><span class="act-repo-meta">updated 1d ago</span></div>
+          <div class="act-repo-item"><i class="fa-solid fa-code-branch act-repo-icon"></i><span class="act-repo-name">django-blog-cms</span><span class="act-repo-meta">updated 3d ago</span></div>
+          <div class="act-repo-item"><i class="fa-solid fa-star act-repo-icon"></i><span class="act-repo-name">cloudhiker</span><span class="act-repo-meta">starred 5d ago</span></div>
+          <div class="act-repo-item"><i class="fa-solid fa-code-branch act-repo-icon"></i><span class="act-repo-name">rest-api-store</span><span class="act-repo-meta">updated 1w ago</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PROJECTS -->
   <section id="projects">
     <div class="container">
@@ -393,10 +459,10 @@
       </div>
 
       <div class="proj-card ca rv">
-        <div class="proj-mockup">
-          <div class="browser-win">
-            <div class="bw-bar"><div class="bw-dot"></div><div class="bw-dot"></div><div class="bw-dot"></div><div class="bw-addr"></div></div>
-            <div class="bw-body"><div class="bw-banner"></div><div class="bw-row"></div><div class="bw-row s60"></div><div class="bw-row s80"></div><div class="bw-cols"><div class="bw-col"></div><div class="bw-col"></div><div class="bw-col"></div></div></div>
+        <div class="proj-mockup" data-screenshot="https://anipulse-80ms.onrender.com/">
+          <div class="proj-thumb">
+            <img class="screenshot" src="" alt="AniPulse screenshot" />
+            <div class="screenshot-fallback"><i class="fa-solid fa-globe"></i><span>Loading preview...</span></div>
           </div>
         </div>
         <div class="proj-info">
@@ -411,10 +477,10 @@
       </div>
 
       <div class="proj-card cb flip rv">
-        <div class="proj-mockup">
-          <div class="browser-win">
-            <div class="bw-bar"><div class="bw-dot"></div><div class="bw-dot"></div><div class="bw-dot"></div><div class="bw-addr"></div></div>
-            <div class="bw-body"><div class="bw-banner"></div><div class="bw-row"></div><div class="bw-row s40"></div><div class="bw-cols"><div class="bw-col"></div><div class="bw-col"></div></div><div class="bw-row" style="margin-top:8px"></div><div class="bw-row s60"></div></div>
+        <div class="proj-mockup" data-screenshot="https://cloudhiker.net">
+          <div class="proj-thumb">
+            <img class="screenshot" src="" alt="Cloudhiker screenshot" />
+            <div class="screenshot-fallback"><i class="fa-solid fa-globe"></i><span>Loading preview...</span></div>
           </div>
         </div>
         <div class="proj-info">
@@ -429,10 +495,10 @@
       </div>
 
       <div class="proj-card cc rv">
-        <div class="proj-mockup">
-          <div class="browser-win">
-            <div class="bw-bar"><div class="bw-dot"></div><div class="bw-dot"></div><div class="bw-dot"></div><div class="bw-addr"></div></div>
-            <div class="bw-body"><div class="bw-banner"></div><div class="bw-row"></div><div class="bw-row s80"></div><div class="bw-cols"><div class="bw-col"></div><div class="bw-col"></div><div class="bw-col"></div></div></div>
+        <div class="proj-mockup" data-screenshot="https://warmindex.com">
+          <div class="proj-thumb">
+            <img class="screenshot" src="" alt="WarmIndex screenshot" />
+            <div class="screenshot-fallback"><i class="fa-solid fa-globe"></i><span>Loading preview...</span></div>
           </div>
         </div>
         <div class="proj-info">
@@ -447,10 +513,10 @@
       </div>
 
       <div class="proj-card cd flip rv">
-        <div class="proj-mockup">
-          <div class="browser-win">
-            <div class="bw-bar"><div class="bw-dot"></div><div class="bw-dot"></div><div class="bw-dot"></div><div class="bw-addr"></div></div>
-            <div class="bw-body"><div class="bw-banner"></div><div class="bw-row"></div><div class="bw-row s40"></div><div class="bw-cols"><div class="bw-col"></div><div class="bw-col"></div></div><div class="bw-row" style="margin-top:8px"></div><div class="bw-row s60"></div></div>
+        <div class="proj-mockup" data-screenshot="https://webnate.vercel.app">
+          <div class="proj-thumb">
+            <img class="screenshot" src="" alt="Webnate screenshot" />
+            <div class="screenshot-fallback"><i class="fa-solid fa-globe"></i><span>Loading preview...</span></div>
           </div>
         </div>
         <div class="proj-info">
@@ -465,10 +531,10 @@
       </div>
 
       <div class="proj-card ce rv">
-        <div class="proj-mockup">
-          <div class="browser-win">
-            <div class="bw-bar"><div class="bw-dot"></div><div class="bw-dot"></div><div class="bw-dot"></div><div class="bw-addr"></div></div>
-            <div class="bw-body"><div class="bw-banner"></div><div class="bw-row"></div><div class="bw-row s80"></div><div class="bw-cols"><div class="bw-col"></div><div class="bw-col"></div><div class="bw-col"></div></div></div>
+        <div class="proj-mockup" data-screenshot="https://cogimator.net">
+          <div class="proj-thumb">
+            <img class="screenshot" src="" alt="Cogimator screenshot" />
+            <div class="screenshot-fallback"><i class="fa-solid fa-globe"></i><span>Loading preview...</span></div>
           </div>
         </div>
         <div class="proj-info">
@@ -490,8 +556,7 @@
         <div>
           <div class="sec-eyebrow">About</div>
           <h2 class="sec-title rv">I'm MAKAVELI</h2>
-          <p class="about-text rv">A full stack developer who started by figuring out why a button wasn't working and ended up obsessed with building things end-to-end. <strong>Frontend to database, browser to server</strong> — I own the whole stack.</p>
-          <p class="about-text rv d1">Right now I'm focused on building <strong>clean Django backends</strong> paired with snappy Bootstrap frontends — apps that are fast, maintainable, and ready to scale.</p>
+          <p class="about-text rv">Frontend developer focused on building <strong>clean, responsive, and user-friendly web experiences</strong>. Passionate about modern web technologies, performance optimization, and crafting products people enjoy using.</p>
           <ul class="about-facts rv d2">
             <li class="about-fact"><i class="fa-solid fa-location-dot"></i> Open to remote &amp; on-site roles</li>
             <li class="about-fact"><i class="fa-brands fa-python"></i> Python &amp; Django are my home base</li>
@@ -744,6 +809,39 @@
     });
     btn.addEventListener('mouseleave', () => { btn.style.transform=''; });
   });
+
+  /* ── Project Screenshots ── */
+  document.querySelectorAll('[data-screenshot]').forEach(el => {
+    const url = encodeURIComponent(el.dataset.screenshot);
+    const img = el.querySelector('.screenshot');
+    const fallback = el.querySelector('.screenshot-fallback');
+    const ctrl = new AbortController();
+    const timeout = setTimeout(() => ctrl.abort(), 8000);
+    fetch(`https://api.microlink.io/?url=${url}&screenshot=true&meta=false`, { signal: ctrl.signal })
+      .then(r => r.json())
+      .then(d => {
+        if (d?.data?.screenshot?.url) {
+          img.src = d.data.screenshot.url;
+          if (fallback) fallback.style.display = 'none';
+        }
+      })
+      .catch(() => { if (fallback) fallback.innerHTML = '<i class="fa-solid fa-globe"></i><span>Preview unavailable</span>'; })
+      .finally(() => clearTimeout(timeout));
+  });
+
+  /* ── GitHub Contribution Graph ── */
+  (function() {
+    const grid = document.getElementById('ghGrid');
+    if (!grid) return;
+    const levels = ['', 'l1', 'l2', 'l3', 'l4'];
+    for (let w = 0; w < 7; w++) {
+      for (let d = 0; d < 7; d++) {
+        const cell = document.createElement('div');
+        cell.className = 'act-gh-cell ' + levels[Math.floor(Math.random() * levels.length)];
+        grid.appendChild(cell);
+      }
+    }
+  })();
 
   /* ── Contact form ── */
   const contactForm = document.getElementById('contactForm');
